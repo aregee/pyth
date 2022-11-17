@@ -98,6 +98,14 @@ class XHTMLReader(PythReader):
         return (node.findParent(['sup']) is not None
                 or self.css.is_super(node))
 
+    def is_underlined(self, node):
+        """
+        Return true if the BeautifulSoup node needs to be rendered as
+        underlined.
+        """
+        return (node.findParent(['ins']) is not None or
+                self.css.is_underlined(node))
+
     def url(self, node):
         """
         return the url of a BeautifulSoup node or None if there is no
@@ -133,6 +141,8 @@ class XHTMLReader(PythReader):
             properties['sub'] = True
         if self.is_super(node):
             properties['super'] = True
+        if self.is_underlined(node):
+            properties['underline'] = True
 
         content=[node.string]
 
