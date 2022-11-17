@@ -136,3 +136,6 @@ class CSS(object):
         properties = self.get_properties(node)
         return properties.get('vertical-align') == 'super'
 
+    def is_underlined(self, node):
+        properties = self.get_properties(node)
+        return properties.get('text-decoration') == 'underline'
